@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { loginUser } from "../Utils/auth";
+import React, { useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { loginUser, user } from "../Modules/auth";
 
 export default function Login() {
+  const history = useHistory();
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showAlert, setShowAlert] = useState(false);
@@ -14,8 +16,17 @@ export default function Login() {
         setShowAlert(true);
         setAlertText(ack.err);
       }
+      if(user.is) {
+        history.push("/");
+      }
     })
   }
+
+  useEffect(() => {
+    if (user.is) {
+      history.push("/");
+    }
+  }, []);
 
   return(
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12">
