@@ -1,1 +1,1 @@
-# PeerChat - P2P Chat
+# 🍉 MelonChat - P2P Chat
