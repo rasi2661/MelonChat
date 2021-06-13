@@ -1,7 +1,5 @@
-var Gun = require('gun');
-          require('gun/sea');
-var gun = new Gun()
-export var user = gun.user();
+import { gun } from "./gun";
+export var user = gun.user().recall({sessionStorage: true});
 
 export const loginUser = (username: string, password: string, cb: any = () => {}) => {
   user.auth(username, password, (ack: any) => {

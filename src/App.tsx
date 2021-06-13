@@ -6,6 +6,9 @@ import {
   Link
 } from "react-router-dom";
 
+import { user } from "./Modules/auth";
+
+import { PublicRoute, PrivateRoute } from "./Components/redirecter";
 import Client from "./Pages/Client"
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
@@ -14,15 +17,15 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/login">
+        <PublicRoute path="/login" authed={user.is}>
           <Login />
-        </Route>
-        <Route path="/register">
+        </PublicRoute>
+        <PublicRoute path="/register" authed={user.is}>
           <Register />
-        </Route>
-        <Route path="/">
+        </PublicRoute>
+        <PrivateRoute path="/" authed={user.is}>
           <Client />
-        </Route>
+        </PrivateRoute>
       </Switch>
     </Router>
   );

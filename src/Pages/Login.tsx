@@ -17,16 +17,11 @@ export default function Login() {
         setAlertText(ack.err);
       }
       if(user.is) {
+        console.log(ack);
         history.push("/");
       }
     })
   }
-
-  useEffect(() => {
-    if (user.is) {
-      history.push("/");
-    }
-  }, []);
 
   return(
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12">
